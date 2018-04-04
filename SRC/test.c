@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include "my.h"
 #define TRUE 1
+#define ERROR 84
 
 int my_putstr(char *str);
 void help();
@@ -68,19 +69,36 @@ int main(int ac, char **av)
 	position.x = 0;
 
 	music = sfMusic_createFromFile("msc/MattashiTheFinalBattle.wav");
+	if (!music) {
+		my_putstr("music no found");		
+		return (ERROR);
+	}
 	sfMusic_play(music);
 	sfMusic_setLoop(music, sfTrue);
 
 	texture = sfTexture_createFromFile("img/Island.png", NULL);
+	if (!texture) {
+		my_putstr("texture no found");		
+		return (ERROR);
+	}
 	sprite = sfSprite_create();
 
 	texturePeng = sfTexture_createFromFile("img/SpaceShip2.png", NULL);
+	if (!texturePeng) {
+		my_putstr("texturePeng no found");		
+		return (ERROR);
+	}
 	spritePeng = sfSprite_create();
 	sfSprite_setTexture(spritePeng, texturePeng, sfTrue);
 
 	clock = sfClock_create();
 
 	cursor_texture = sfTexture_createFromFile("img/Cursor2.png",NULL);
+	if (!cursor_texture) {
+		my_putstr("cursor_texture no found");
+		return (ERROR);
+	}
+
 	cursor = sfSprite_create();
 	sfSprite_setTexture(cursor,cursor_texture, sfTrue);
 	sfRenderWindow_setMouseCursorVisible(window, sfFalse);

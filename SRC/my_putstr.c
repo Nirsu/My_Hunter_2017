@@ -17,6 +17,6 @@ int my_putstr(char *str)
 		my_putchar(str[i]);
 		i = i + 1;
 	}
-
+	my_putchar('\n');
 	return (0);
 }
